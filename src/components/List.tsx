@@ -3,13 +3,16 @@ import ListItem from './ListItem.tsx'
 
 function List() {
     const [listItems, setListItems] = useState([
-        { id: 1, text: 'New Note' },
-        { id: 2, text: 'New Note' },
-        { id: 3, text: 'New Note' },
+        { id: 1, text: 'New Note Title', description: 'New Description' },
+        { id: 2, text: 'New Note Title', description: 'New Description' },
+        { id: 3, text: 'New Note Title', description: 'New Description' },
     ]);
 
     const handleAddListItem = () => {
-        setListItems([...listItems, {id: listItems.length + 1, text: 'New Note'}]);
+        const highestId = listItems.reduce((maxId, currentItem) => {
+            return Math.max(maxId, currentItem.id);
+        }, 0);     
+        setListItems([...listItems, {id: highestId + 1, text: 'New Note', description: 'New Description'}]);
     };
 
     const removeListItem = ({removeId} : {removeId: number}) => {
@@ -20,7 +23,7 @@ function List() {
     <>
         <div className="list">  
             {listItems.map((listItem) => (
-              <ListItem key={listItem.id} id={listItem.id} text={listItem.text} deleteListItem={() => removeListItem({ removeId: listItem.id })} />
+              <ListItem key={listItem.id} text={listItem.text} description={listItem.description} deleteListItem={() => removeListItem({ removeId: listItem.id })} />
             ))}
             <div onClick={handleAddListItem} className="add-list-item">+</div>      
         </div>        

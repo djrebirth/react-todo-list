@@ -17,7 +17,7 @@ function ListItemEditableText({itemText} : ListItemEditableTextProps) {
     <>
        <div className="item-text">
           {!isEditing && <div className="read-only-text" onClick={handleIsEditing}>{text}</div>}
-          {isEditing && <input id="editText" className="item-text-editable" value={text} onChange={handleChange} onBlur={handleIsEditing} autoFocus />}
+          {isEditing && <input id="editText" className="item-text-editable" maxLength={28} value={text} onChange={handleChange} onBlur={handleIsEditing} autoFocus />}
         </div>
     </>
   );

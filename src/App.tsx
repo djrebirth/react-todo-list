@@ -1,4 +1,3 @@
-// import { useState } from 'react'
 import List from './components/List.tsx'
 import './App.css'
 
